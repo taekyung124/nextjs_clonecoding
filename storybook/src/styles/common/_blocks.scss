@@ -195,3 +195,174 @@
 		margin-top: 10px;
 	}
 }
+
+// ===============================
+// DatePicker
+// ===============================
+.react-datepicker-wrapper {
+	width: 100%;
+}
+
+.react-datepicker__tab-loop {
+	.react-datepicker__tab-loop__start {
+
+	}
+	.react-datepicker-popper {
+		width: 100%;
+		max-width: 500px;
+		height: 486px;
+		z-index: 99;
+
+		div {
+			div {
+				.react-datepicker {
+					width: 100%;
+					height: 100%;
+					font-family: 'Pretendard', "SF Pro Display", AppleSDGothicNeo-Light, Helvetica,"Malgun Gothic", 'MalgunGothic', '맑은고딕', sans-serif !important;
+
+					> span {}
+
+					.react-datepicker__navigation {
+						top: 21px;
+						width: 18px;
+						height: 18px;
+						margin: 0;
+						padding-bottom: 0;
+						background-position: center;
+						background-size: 15px;
+						background-repeat: no-repeat;
+						cursor: pointer;
+
+						.react-datepicker__navigation-icon {
+							display: none;
+						}
+
+						&.react-datepicker__navigation--previous {
+							@include mixins.ratio_images('/assets/icons/comm_ico_datepicker_prev');
+							left: 20px;
+						}
+						&.react-datepicker__navigation--next {
+							@include mixins.ratio_images('/assets/icons/comm_ico_datepicker_next');
+							right: 20px;
+						}
+					}
+
+					.react-datepicker__month-container {
+						width: 100%;
+						float: none;
+
+						.react-datepicker__header {
+							@include mixins.justify_width(center, center);
+							width: 100%;
+							height: 60px;
+							padding: 0;
+							background: none;
+							border: none;
+
+							.react-datepicker__current-month { // 헤더
+								@include mixins.font_size_2xl('sb');
+
+							}
+							/*.react-datepicker__header__dropdown.react-datepicker__header__dropdown--scroll {
+
+							}*/
+
+							~ div { // calendar
+								width: calc(100% - 46px);
+								margin: 20px 23px 0;
+
+								div:has(.react-datepicker__day-names){
+									.react-datepicker__day-names {
+										display: flex;
+										justify-content: space-between;
+										margin: 0;
+
+										.react-datepicker__day-name {
+											margin: 0;
+											width: 47px;
+
+											.react-datepicker__sr-only {
+												margin: 0;
+
+												~ span { // 요일
+													display: inline-block;
+													width: 100%;
+													padding: 0 0 10px;
+													@include mixins.font_size_xs('md');
+													color: variables.$textColorDG;
+													vertical-align: top;
+												}
+											}
+										}
+									}
+								}
+								.react-datepicker__month {
+									margin: 0;
+									.react-datepicker__week {
+										display: flex;
+										justify-content: space-between;
+
+										.react-datepicker__day {
+											display: inline-block;
+											width: 47px;
+											height: 47px;
+											padding: 13px 0;
+											margin: 0;
+											background: transparent;
+											@include mixins.font_size_md('lt');
+											color: variables.$colorBlack;
+											text-align: center;
+											@include mixins.prefix(transition, background-color 0.2s ease-out);
+											vertical-align: top;
+
+											&.react-datepicker__day--today {
+												font-weight: variables.$fontWeightSemibold;
+												color: variables.$colorGreen;
+											}
+
+											&.react-datepicker__day--selected {
+												border-radius: 50%;
+												background-color: variables.$colorGreen;
+												color: variables.$colorWhite;
+											}
+											&.react-datepicker__day--disabled {
+												color: variables.$colorGray01;
+												text-decoration: line-through;
+											}
+
+											&.react-datepicker__day--outside-month {
+												color: variables.$colorWhite;
+												pointer-events: none;
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+
+					.datePickerBtnWrap {
+						position: absolute;
+						bottom: 0;
+						width: 100%;
+						padding: {
+							left: 20px;
+							right: 20px;
+							top: 10px;
+							bottom: calc(20px + env(safe-area-inset-bottom));
+						}
+
+						button {
+							float: none;
+							width: 100%;
+						}
+					}
+				}
+			}
+		}
+
+		> svg {
+			display: none;
+		}
+	}
+}

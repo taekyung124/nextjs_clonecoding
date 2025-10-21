@@ -10,6 +10,7 @@ export interface InputProps {
 	readonly?: boolean;
 	value?: string | any;
 	hideGuide?: boolean;
+	hasDatePicker?: boolean;
 	isValidCheck?: 'fail' | 'success';
 	inputGuide?: string;
 	validDesc?: string;
@@ -17,6 +18,7 @@ export interface InputProps {
 	slotBtn?: React.ReactNode;
 	children?: React.ReactNode;
 	onChange?: (value: string) => void;
+	onClick?: () => void;
 	ref?: React.Ref<HTMLInputElement>;
 }
 export const Input: React.FC<InputProps> = ({
@@ -28,6 +30,7 @@ export const Input: React.FC<InputProps> = ({
 	readonly = false,
 	value='',
 	hideGuide,
+	hasDatePicker = false,
 	isValidCheck,
 	inputGuide = '',
 	validDesc = '',
@@ -35,6 +38,7 @@ export const Input: React.FC<InputProps> = ({
 	slotBtn,
 	children,
 	onChange,
+	onClick,
 	ref,
 }) => {
 	const [inputValue, setInputValue] = React.useState<string>('');
@@ -109,7 +113,7 @@ export const Input: React.FC<InputProps> = ({
 					onBlur={handleBlur}
 					onChange={handleChange}
 				/>
-				{(type !== 'password' && type !== 'tel' && type !== 'number') && (
+				{(type !== 'password' && type !== 'tel' && type !== 'number' && !hasDatePicker) && (
 					<button
 						className={styles.btnInputDel}
 						type={"button"}
@@ -146,6 +150,11 @@ export const Input: React.FC<InputProps> = ({
 				{type === 'search' && (
 					<button type="button" className={styles.btnInputSearch}>
 						<span className="offscreen">검색</span>
+					</button>
+				)}
+				{hasDatePicker && (
+					<button type="button" className={styles.btnDatePicker} onClick={onClick}>
+						<span className="offscreen">날짜 선택</span>
 					</button>
 				)}
 				{children}

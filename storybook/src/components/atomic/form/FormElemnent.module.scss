@@ -110,6 +110,25 @@
 			display: block;
 		}
 	}
+
+	.btnDatePicker {
+		position: absolute;
+		width: calc(100% - 28px);
+		height: calc(100% - 2px);
+
+		&::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			right: 0;
+			display: inline-block;
+			width: 24px;
+			height: 24px;
+			vertical-align: top;
+			@include mixins.ratio_images('/assets/icons/comm_ico_datepicker');
+			margin: 11px 0 0 5px;
+		}
+	}
 }
 
 .inputBox {
