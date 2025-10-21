@@ -1,0 +1,29 @@
+@use 'sass:map';
+@use '../../../styles/abstracts/variables';
+@use '../../../styles/abstracts/mixins';
+
+.loadingWrap {
+	position: fixed;
+	z-index: 99999;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	@include mixins.size_wrap_width;
+	background: rgba(variables.$colorWhite, 0.5);
+
+	.loading {
+		position: absolute;
+		display: block;
+		width: 50px;
+		height: 50px;
+		overflow: hidden;
+		box-sizing: border-box;
+		top: 50%;
+		left: 50%;
+		margin: {
+			left: -25px;
+			top: -25px;
+		}
+	}
+}
