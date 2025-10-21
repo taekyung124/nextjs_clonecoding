@@ -55,7 +55,16 @@ export const ReactDatePicker: React.FC<ReactDatePickerProps> = ({
 				onClickOutside={() => setIsOpen(false)}
 				onChange={(date: Date | null) => { if (date) setStartDate(date); }}
 				onInputClick={isDisabled ? () => setIsOpen(false) : () => setIsOpen(true)}
-				calendarContainer={({ children }) => (
+				renderCustomHeader={({ date, decreaseMonth, increaseMonth }) => (
+					<div className="react-datepicker__header-custom">
+						<button className="react-datepicker__navigation react-datepicker__navigation--previous" onClick={decreaseMonth}>{'<'}</button>
+						<span>
+							{date.getFullYear()}년 {date.getMonth() + 1}월
+						</span>
+						<button className="react-datepicker__navigation react-datepicker__navigation--next" onClick={increaseMonth}>{'>'}</button>
+					</div>
+				)}
+				calendarContainer={({children}) => (
 					<div className="react-datepicker">
 						{children}
 						<div className="datePickerBtnWrap">

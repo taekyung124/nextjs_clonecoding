@@ -220,33 +220,6 @@
 					height: 100%;
 					font-family: 'Pretendard', "SF Pro Display", AppleSDGothicNeo-Light, Helvetica,"Malgun Gothic", 'MalgunGothic', '맑은고딕', sans-serif !important;
 
-					> span {}
-
-					.react-datepicker__navigation {
-						top: 21px;
-						width: 18px;
-						height: 18px;
-						margin: 0;
-						padding-bottom: 0;
-						background-position: center;
-						background-size: 15px;
-						background-repeat: no-repeat;
-						cursor: pointer;
-
-						.react-datepicker__navigation-icon {
-							display: none;
-						}
-
-						&.react-datepicker__navigation--previous {
-							@include mixins.ratio_images('/assets/icons/comm_ico_datepicker_prev');
-							left: 20px;
-						}
-						&.react-datepicker__navigation--next {
-							@include mixins.ratio_images('/assets/icons/comm_ico_datepicker_next');
-							right: 20px;
-						}
-					}
-
 					.react-datepicker__month-container {
 						width: 100%;
 						float: none;
@@ -259,13 +232,31 @@
 							background: none;
 							border: none;
 
-							.react-datepicker__current-month { // 헤더
+							.react-datepicker__navigation {
+								top: 21px;
+								width: 18px;
+								height: 18px;
+								margin: 0;
+								padding-bottom: 0;
+								background-position: center;
+								background-size: 15px;
+								background-repeat: no-repeat;
+								cursor: pointer;
+
+								&.react-datepicker__navigation--previous {
+									@include mixins.ratio_images('/assets/icons/comm_ico_datepicker_prev');
+									left: 20px;
+								}
+								&.react-datepicker__navigation--next {
+									@include mixins.ratio_images('/assets/icons/comm_ico_datepicker_next');
+									right: 20px;
+								}
+							}
+
+							span { // 헤더
 								@include mixins.font_size_2xl('sb');
 
 							}
-							/*.react-datepicker__header__dropdown.react-datepicker__header__dropdown--scroll {
-
-							}*/
 
 							~ div { // calendar
 								width: calc(100% - 46px);
