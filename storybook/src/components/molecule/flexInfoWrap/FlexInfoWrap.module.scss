@@ -19,6 +19,7 @@
 		min-width: 0;
 		 > * { width: 100% }
 	}
+
 	.rightArea {
 		margin-left: auto;
 		flex: 0 0 auto;
@@ -26,6 +27,13 @@
 
 		&.clear {
 			margin-left: 0;
+			text-align: left;
+		}
+	}
+
+	&:has(.clear) {
+		.leftArea {
+			flex: initial;
 		}
 	}
 }

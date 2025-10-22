@@ -138,4 +138,9 @@
 	&.lg {
 		margin-top: 16px;
 	}
+
+	[class*=stext] {
+		display: inline-block;
+		vertical-align: top;
+	}
 }

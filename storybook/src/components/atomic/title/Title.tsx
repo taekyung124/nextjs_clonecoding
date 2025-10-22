@@ -10,7 +10,7 @@ interface TitleProps {
 }
 
 export const Title: React.FC<TitleProps> = ({
-	size = 'medium',
+	size = 'md',
 	lang = 'kor',
 	type = 'ctitle',
 	text,

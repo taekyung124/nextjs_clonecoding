@@ -22,6 +22,14 @@
 .fwMd { font-weight: variables.$fontWeightMedium !important; }
 .fwSb { font-weight: variables.$fontWeightSemibold !important; }
 
+// line height
+.lhXl { line-height: variables.$fontSizeXlLineHeight !important; }
+.lhLg { line-height: variables.$fontSizeLgLineHeight !important; }
+.lhMd { line-height: variables.$fontSizeMdLineHeight !important; }
+.lhSm { line-height: variables.$fontSizeSmLineHeight !important; }
+.lhXs { line-height: variables.$fontSizeXsLineHeight !important; }
+
+
 // text align
 .taLeft { text-align: left !important; }
 .taCenter { text-align: center !important; }
