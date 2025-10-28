@@ -82,10 +82,13 @@ export const Display: StoryFn = () => {
 				<SwiperWrap
 					items={[
 						<DisplayBanner prod="newUpdate" />,
-						<DisplayBanner prod="priceDown" />,
-						<DisplayBanner prod="newItem" />,
-						<DisplayBanner prod="outlet" />,
-						<DisplayBanner prod="gugusBest" />
+						<DisplayBanner
+							btnText="버튼명"
+							subText="마케팅 관련 서브 타이틀이 들어갑니다. 마케팅 관련 서브 타이틀이 들어갑니다."
+							title="일이삼사오육칠팔구십일이삼사오육칠팔구십"
+						/>,
+						<DisplayBanner brand="chanel" />,
+						<DisplayBanner brand="rolex" />
 					]}
 					type="fraction" fractionPos="sm"
 				/>
