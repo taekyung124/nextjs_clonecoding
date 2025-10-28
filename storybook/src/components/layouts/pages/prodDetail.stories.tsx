@@ -22,7 +22,6 @@ import {Thumb} from "@/components/atomic/thumb/Thumb";
 import {Title} from "@/components/atomic/title/Title";
 import {Stext} from "@/components/atomic/stext/Stext";
 import {GoodsGroup} from "@/components/atomic/goodsGroup/GoodsGroup";
-import {Button} from "@/components/atomic/button/Button";
 import {EtcButton} from "@/components/atomic/etcButton/EtcButton";
 import {TextButton} from "@/components/atomic/textButton/TextButton";
 

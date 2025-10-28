@@ -13,11 +13,12 @@ interface InputFlexGroupProps {
 	isValidCheck?: 'fail' | 'success';
 	inputGuide?: string;
 	validDesc?: string;
+	children?: React.ReactNode;
 }
 
 export const InputFlexGroup: React.FC<InputFlexGroupProps> = ({
 	gap = 'Md', midText, leftArea, rightArea, formContents, btnSlot,
-	isValidCheck, inputGuide, validDesc,
+	isValidCheck, inputGuide, validDesc, children
 }) => {
 
 	// 부모에서 항상 Input의 내부 가이드는 숨기고,
@@ -77,6 +78,7 @@ export const InputFlexGroup: React.FC<InputFlexGroupProps> = ({
 					</>
 				)}
 			</div>
+			{children}
 			{(inputGuide && !isValidCheck) && (
 				<div className={styles.inputGuide}>{inputGuide}</div>
 			)}

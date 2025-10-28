@@ -9,6 +9,8 @@ export interface InputProps {
 	disabled?: boolean;
 	readonly?: boolean;
 	value?: string | any;
+	maxLength?: number;
+	inputMode?: 'text' | 'tel' | 'url' | 'numeric' | 'email' | 'decimal' | 'search';
 	hideGuide?: boolean;
 	hasDatePicker?: boolean;
 	isValidCheck?: 'fail' | 'success';
@@ -29,6 +31,8 @@ export const Input: React.FC<InputProps> = ({
 	disabled = false,
 	readonly = false,
 	value='',
+	maxLength,
+	inputMode = 'text',
 	hideGuide,
 	hasDatePicker = false,
 	isValidCheck,
@@ -112,6 +116,8 @@ export const Input: React.FC<InputProps> = ({
 					onFocus={handleFocus}
 					onBlur={handleBlur}
 					onChange={handleChange}
+					maxLength={maxLength}
+					inputMode={inputMode}
 				/>
 				{(type !== 'password' && type !== 'tel' && type !== 'number' && !hasDatePicker) && (
 					<button
