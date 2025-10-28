@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useState} from 'react';
 import type { Meta, StoryObj, StoryFn } from '@storybook/nextjs-vite';
 
 // layouts
@@ -11,7 +12,10 @@ import {SwiperWrap} from "@/components/organism/swiperWrap/SwiperWrap";
 
 
 // molecule
-import {Table, TableCell} from "@/components/molecule/table/Table";
+import {DisplayBanner} from "@/components/molecule/displayBanner/DisplayBanner";
+import {ListHeader} from "@/components/molecule/listHeader/ListHeader";
+import {GridList} from "@/components/molecule/gridList/GridList";
+import {ProdItem} from "@/components/molecule/prodItem/ProdItem";
 
 // atomic
 import {Box} from "@/components/atomic/box/Box";
@@ -20,6 +24,7 @@ import {FlexInfoWrap} from "@/components/molecule/flexInfoWrap/FlexInfoWrap";
 import {Stext} from "@/components/atomic/stext/Stext";
 import {Button} from "@/components/atomic/button/Button";
 import {TextButton} from "@/components/atomic/textButton/TextButton";
+import {StickyWrap} from "@/components/organism/stickyWrap/StickyWrap";
 
 const meta = {
 	title: 'Pages/Display',
@@ -52,82 +57,116 @@ export const Display: StoryFn = () => {
 
 	const subHeaderProps: HeaderProps = {
 		type: "sub",
-		title: "",
+		title: "전시 타이틀",
 		hasGnb: true,
 		items: gnbItems,
+		bgTransparent: true,
 		headerButtonOrder: [
-			{ btnHomeUrl: "javascript:" },
 			{ btnSearchUrl: "javascript:" },
 			{ btnShareUrl: "javascript:" },
 		],
 	};
 
-	// table
+	const [value, setValue] = React.useState('');
+	const [isRow, setIsRow] = useState(false);
 
-	const InfoLineTopTbodyData: TableCell[][] = [
-		[
-			{ type: 'th', content: '포인트', scope: 'row' },
-			{ type: 'td', content: '최대 2,425,000P 적립' },
-		],
-		[
-			{ type: 'th', content: '결제혜택', scope: 'row' },
-			{ type: 'td', content: <>
-					<TextButton tag={'a'} href={'javascript:'}
-						color="black" size="lg" udlLink addCommClass={'fwLt'}
-						text="가상계좌 결제시 결제금액 1% 추가적립(회원전용)" />
-					<br />
-					<Stext color={'Black'} text={'N Pay 결제시 결제금액 1% 네이버포인트 추가적립'} />
-				</> },
-		],
-		[
-			{ type: 'th', content: '보유 포인트', scope: 'row' },
-			{ type: 'td', content: <>
-					<TextButton tag={'a'} href={'javascript:'}
-						color="black" size="lg" udlLink addCommClass={'fwLt'}
-						text="최대 6개월 무이자 할부 혜택" />
-					<br />
-					<Stext color={'Black'} text={'최대 6개월 무이자 할부 혜택'} />
-				</> },
-		]
-	]
+	const handleToggle = (index: number) => {
+		if (index === 0) {
+			setIsRow(prev => !prev);
+		}
+	};
 
 	return (
 		<Sub headerProps={subHeaderProps}>
-			<ContentBox size={'zero'} pb={'Md'} hasInner={false}>
+			<ContentBox size={'zero'} hasInner={false}>
 				<SwiperWrap
 					items={[
-						<Thumb altText="썸네일 이미지" imgSrc="prod_5by5" squareSize="auto" type="square" />,
-						<Thumb altText="썸네일 이미지" imgSrc="prod_5by5" squareSize="auto" type="square" />,
-						<Thumb altText="썸네일 이미지" imgSrc="prod_5by5" squareSize="auto" type="square" />,
-						<Thumb altText="썸네일 이미지" imgSrc="prod_5by5" squareSize="auto" type="square" />,
-						<Thumb altText="썸네일 이미지" imgSrc="prod_5by5" squareSize="auto" type="square" />
+						<DisplayBanner prod="newUpdate" />,
+						<DisplayBanner prod="priceDown" />,
+						<DisplayBanner prod="newItem" />,
+						<DisplayBanner prod="outlet" />,
+						<DisplayBanner prod="gugusBest" />
 					]}
-					type="fraction" fractionPos="center"
+					type="fraction" fractionPos="sm"
 				/>
 			</ContentBox>
-			<ContentBox size={'zero'} pb={'Md'}>
-				<ContentBox size={'zero'} pb={'Md'} hasInner={false}>
-
+			<ContentBox type={'divider'} size={'zero'}>
+				// 필터 영역~~
+			</ContentBox>
+			<ContentBox type={'divider'} size={'Md'}>
+				<ContentBox size={'zero'} pb={'Sm'} hasInner={false}>
+					<ListHeader
+						toggle={['거래 진행중 제외', '보고구매 가능', '거래 진행중 제외', '보고구매 가능']}
+						onListViewToggle={() => setIsRow(prev => !prev)}
+					/>
 				</ContentBox>
-				<ContentBox type={'line'} size={'Md'} hasInner={false}>
-					<Table wapperType={'Info'} tblType={'Info'} caption={'tblInfoLineTop 타입 테이블'} colWidth={['94px', 'auto']} tbody={InfoLineTopTbodyData} />
-					<Box color={'green'} size={'md'} mt={'md'} child={
-						<FlexInfoWrap align={'center'} marginLeft={16} isClear={true}
-							leftArea={
-								<></>
-							}
-							rightArea={
-								<Stext size={'Sm'} color={'Black'}
-									text={<>이 상품은 <span className="fwSb">반품 불가 상품</span>입니다.
-										<br />주문 시 신중한 고민 후 주문 바랍니다.</>}
+				<ContentBox type={'line'} size={7} hasInner={false}>
+					<StickyWrap paddingY={7} top={60}
+								children={<ListHeader
+									countNum="2,750"
+									hasFilter
+									onChange={value => setValue(value)}
+									placeholder="최신 등록순"
+									selectSlots={[{
+										label: '최신 등록순',
+										value: '최신 등록순'
+									}, {
+										label: '최근 가격조정순',
+										value: '최근 가격조정순'
+									}, {
+										label: '인기 클릭순',
+										value: '인기 클릭순'
+									}, {
+										label: '할인률순',
+										value: '할인률순'
+									}, {
+										label: '낮은 가격순',
+										value: '낮은 가격순'
+									}, {
+										label: '높은 가격순',
+										value: '높은 가격순'
+									}]}
+									value={value}
 								/>
-							}
-						/>
-					} />
+								}
+					/>
 				</ContentBox>
-				<ContentBox size={'zero'} pb={'Md'}>
-
-				</ContentBox>
+				<GridList type={isRow ? 'row' : 'col2'} gap={'prod'} mt={20}
+						  items={[
+							  <ProdItem direction={isRow ? 'row' : 'col'} imgSrc="prod_5by5" squareSize={isRow ? 'Md' : 'auto'}
+										brand="BRAND NAME BRAND NAME BRAND NAME BRAND NAME BRAND NAME BRAND NAME"
+										btmBadgeText={['badge01', 'badge02', 'badge03']} btnLink btnWish uiChk
+										discount={12} loanPrice="300,000" price="112,000,000" priceBadge="A" priceOrigin="4,000,000"
+										prodState="stop" sizeInfo="230" uid={123456}
+										title="prod title prod title prod title prod title prod title prod title prod title prod title prod title"
+										topBadgeText={['badge01', 'badge02']}
+							  />,
+							  <ProdItem direction={isRow ? 'row' : 'col'} imgSrc="prod_5by5" squareSize={isRow ? 'Md' : 'auto'}
+										brand="BRAND NAME BRAND NAME BRAND NAME BRAND NAME BRAND NAME BRAND NAME"
+										btmBadgeText={['badge01', 'badge02', 'badge03']} btnLink btnWish uiChk
+										discount={12} loanPrice="300,000" price="112,000,000" priceBadge="A" priceOrigin="4,000,000"
+										sizeInfo="230" uid={123456}
+										title="prod title prod title prod title prod title prod title prod title prod title prod title prod title"
+										topBadgeText={['badge01', 'badge02']}
+							  />,
+							  <ProdItem direction={isRow ? 'row' : 'col'} imgSrc="prod_5by5" squareSize={isRow ? 'Md' : 'auto'}
+										brand="BRAND NAME BRAND NAME BRAND NAME BRAND NAME BRAND NAME BRAND NAME"
+										btmBadgeText={['badge01', 'badge02', 'badge03']} btnLink btnWish uiChk discount={12}
+										loanPrice="300,000" price="112,000,000" priceBadge="A" priceOrigin="4,000,000"
+										sizeInfo="230" uid={123456}
+										title="prod title prod title prod title prod title prod title prod title prod title prod title prod title"
+										topBadgeText={['badge01', 'badge02']}
+							  />,
+							  <ProdItem direction={isRow ? 'row' : 'col'} imgSrc="prod_5by5" squareSize={isRow ? 'Md' : 'auto'}
+										brand="BRAND NAME BRAND NAME BRAND NAME BRAND NAME BRAND NAME BRAND NAME"
+										btmBadgeText={['badge01', 'badge02', 'badge03']} btnLink btnWish uiChk
+										discount={12} loanPrice="300,000" price="112,000,000" priceBadge="A" priceOrigin="4,000,000"
+										prodState="ongoing" sizeInfo="230" uid={123456}
+										title="prod title prod title prod title prod title prod title prod title prod title prod title prod title"
+										topBadgeText={['badge01', 'badge02']}
+							  />
+						  ]}
+				/>
 			</ContentBox>
 		</Sub>
 	)

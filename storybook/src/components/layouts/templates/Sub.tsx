@@ -34,6 +34,8 @@ export const Sub: React.FC<SubProps> = ({
 		}, 50);
 	}, [hasGnb]);
 
+	const isTransparent = headerProps?.bgTransparent === true;
+
 	return (
 		<div
 			ref={gnbRef}
@@ -41,6 +43,7 @@ export const Sub: React.FC<SubProps> = ({
 				'wrapper',
 				'sub',
 				!hasDocker && 'noDocker',
+				isTransparent && 'transparent',
 			].join(' ')}
 		>
 			<div className={'skipNav'}>

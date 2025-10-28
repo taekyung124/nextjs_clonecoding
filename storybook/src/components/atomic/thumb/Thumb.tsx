@@ -46,7 +46,7 @@ export const Thumb: React.FC<ThumbProps> = ({
 					<EtcButton name="wish" color="red" iconSize={20} />
 				</div>
 			)}
-			{(type === 'square' && squareSize === 'auto' && prodState) && (
+			{(type === 'square' && squareSize !== 'Sm' && squareSize !== 'Xs' && prodState) && (
 				<div className={styles.prodState}>
 					<span
 						className={styles.icon}

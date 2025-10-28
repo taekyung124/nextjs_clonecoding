@@ -338,6 +338,7 @@
 		height: 46px;
 		padding: 0 35px 0 14px;
 		border: 1px solid variables.$colorGray05;
+		border-radius: 4px;
 		@include mixins.ratio_images('/assets/icons/ico_select_arr', 20px, right 14px center);
 		background-color: variables.$colorWhite;
 		-webkit-appearance: none;

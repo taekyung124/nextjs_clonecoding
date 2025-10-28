@@ -57,6 +57,12 @@
 			padding-bottom: env(safe-area-inset-bottom);
 		}
 	}
+
+	&.transparent {
+		.containerWrapper {
+			margin-top: -60px;
+		}
+	}
 }
 
 // popup 오픈 시

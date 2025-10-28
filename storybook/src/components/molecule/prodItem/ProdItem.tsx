@@ -34,10 +34,10 @@ export const ProdItem: React.FC<ProdItemProps> = ({
 	squareSize, imgSrc, btnWish, uiChk, prodState, thumbClass
 }) => {
 	const infoBoxWidth =
-		squareSize === 'Xs' ? '80' :
-		squareSize === 'Sm' ? '100' :
-		squareSize === 'Md' ? '110' :
-		squareSize === 'Lg' ? '120' : '0';
+		squareSize === 'Xs' ? '96' :
+		squareSize === 'Sm' ? '116' :
+		squareSize === 'Md' ? '126' :
+		squareSize === 'Lg' ? '136' : '0';
 
 	return (
 		<div

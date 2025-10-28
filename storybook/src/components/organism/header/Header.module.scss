@@ -193,20 +193,17 @@
 
 	&.transparent {
 		.headerWrap {
-			.headerBox {
-				background: transparent;
-
-				.headerLeft {
-					.pageTitle {
-						color: variables.$colorWhite;
-					}
+			background: transparent;
+			.headerLeft {
+				.pageTitle {
+					color: variables.$colorWhite;
 				}
+			}
 
-				.headerRight {
-					.new {
-						&::after {
-							background-color: variables.$colorWhite;
-						}
+			.headerRight {
+				.new {
+					&::after {
+						background-color: variables.$colorWhite;
 					}
 				}
 			}

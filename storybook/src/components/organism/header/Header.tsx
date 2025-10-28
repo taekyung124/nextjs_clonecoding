@@ -32,8 +32,6 @@ export const Header: React.FC<HeaderProps> = ({
 	const [subActive, setSubActive] = React.useState(false);
 	const [isSticky, setIsSticky] = React.useState(false);
 
-	console.log("Sticky", isSticky);
-
 	const handleSubToggle = () => {
 		setSubActive((prev) => !prev);
 	};
@@ -57,6 +55,10 @@ export const Header: React.FC<HeaderProps> = ({
 
 	if ((type === 'sub' && bgTransparent)) {
 		renderIconColor = 'white';
+
+		if (isSticky) {
+			renderIconColor = 'black';
+		}
 	} else if (type === 'main') {
 		renderIconColor = 'white';
 		if (gnbActive) {
@@ -65,6 +67,7 @@ export const Header: React.FC<HeaderProps> = ({
 	} else {
 		renderIconColor = 'black';
 	}
+
 	const renderHeader =
 		<div className={[styles.headerWrap, gnbActive ? styles.gnbActive : ''].join(' ')}>
 			{type === 'sub' && (
@@ -136,7 +139,7 @@ export const Header: React.FC<HeaderProps> = ({
 					{hasGnb && (
 						<Gnb isActive={gnbActive} onToggle={setGnbActive} items={items} />
 					)}
-					<StickyWrap children={renderHeader} />
+					<StickyWrap onFixedChange={setIsSticky} children={renderHeader} />
 				</>
 			)}
 

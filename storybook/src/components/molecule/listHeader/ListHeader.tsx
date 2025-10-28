@@ -14,18 +14,18 @@ interface ListHeaderProps extends SelectSlotProps{
 	btnSlots?: React.ReactNode;
 	selectSlots?: SelectOption[];
 	hasFilter?: boolean;
-	onClick?: () => void;
+	onListViewToggle?: () => void;
 }
 
 export const ListHeader: React.FC<ListHeaderProps> = ({
-	countNum, toggle, btnSlots, selectSlots, hasFilter, onClick,
+	countNum, toggle, btnSlots, selectSlots, hasFilter, onListViewToggle,
 	placeholder, value, onChange,
 }) => {
 	const [isListViewActive, setIsListViewActive] = React.useState(false);
 
 	const handleListViewToggle = () => {
 		setIsListViewActive(prev => !prev);
-		onClick?.();
+		onListViewToggle?.();
 	};
 
 	return (
