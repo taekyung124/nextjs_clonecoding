@@ -1,0 +1,8 @@
+@use 'sass:map';
+@use '../../../styles/abstracts/variables';
+@use '../../../styles/abstracts/mixins';
+
+.iconSvg {
+	display: inline-block;
+	vertical-align: top;
+}

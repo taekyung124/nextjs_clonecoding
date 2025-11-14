@@ -28,4 +28,14 @@
 			width: calc(50% - (var(--gap) / 2));;
 		}
 	}
+
+	&.col4 {
+		@include mixins.justify_width;
+		flex-wrap: wrap;
+		row-gap: var(--gap);
+
+		.gridItem {
+			width: 25%;
+		}
+	}
 }

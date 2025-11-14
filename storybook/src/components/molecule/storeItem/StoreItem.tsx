@@ -9,7 +9,7 @@ import type { TableCell } from "@/components/molecule/table/Table";
 import {Stext} from "@/components/atomic/stext/Stext";
 import {TextButton} from "@/components/atomic/textButton/TextButton";
 
-type StoreThumbProps = Pick<ThumbProps, 'imgSrc' | 'href' | 'countProdVal' | 'thumbClass'>;
+type StoreThumbProps = Pick<ThumbProps, 'imgSrc' | 'href' | 'hasCountProd' | 'countProdVal' | 'thumbClass'>;
 
 interface StoreItemProps extends StoreThumbProps {
 	type: 'list' | 'detail';
@@ -28,7 +28,7 @@ export const StoreItem: React.FC<StoreItemProps> = ({
 	type, storeName, storeLocation, locationCopy, btnWish, tableContents, grayBoxContents,
 	guideUrl ='javascript:', chatUrl ='javascript:', productsUrl ='javascript:',
 	// Thumb
-	imgSrc, countProdVal, thumbClass, href
+	imgSrc, hasCountProd = true, countProdVal, thumbClass, href
 }) => {
 	const handleCopy = (text: string) => {
 		if (!text) return;
@@ -41,7 +41,7 @@ export const StoreItem: React.FC<StoreItemProps> = ({
 		<div className={[styles.storeItem, styles[type]].join(' ')}>
 			{type === 'list' && (
 				<Thumb type={'fixed'} fixedHeight ={'47.761%'}
-					   hasCountProd={true} countProdVal={countProdVal}
+					   hasCountProd={hasCountProd} countProdVal={countProdVal}
 					   imgSrc={imgSrc} altText={'매장 이미지'} thumbClass={thumbClass}
 					   btnLink={true} href={href}
 				/>

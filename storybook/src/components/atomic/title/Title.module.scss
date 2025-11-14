@@ -27,6 +27,16 @@
 
 	//영문
 	&.eng {
+		&.xxs { // 18px
+			@include mixins.font_size_2xl;
+			font-weight: variables.$fontWeightEngBold;
+			font-family: variables.$fontEngDefault;
+		}
+
+		&.xs { // 24px
+			@include mixins.font_eng_size_xs;
+		}
+
 		&.sm { // 26px
 			@include mixins.font_eng_size_sm;
 		}

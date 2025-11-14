@@ -7,13 +7,20 @@ export interface FlexInfoWrapProps {
 	leftArea?: React.ReactNode;
 	rightArea?: React.ReactNode;
 	marginLeft?: number;
+	marginBottom?: number;
 }
 
 export const FlexInfoWrap: React.FC<FlexInfoWrapProps> = ({
-	align = 'start', leftArea, rightArea, marginLeft, isClear = false
+	align = 'start', leftArea, rightArea, marginLeft, marginBottom, isClear = false
 }) => {
 	return (
-		<div className={[styles.flexInfoWrap, styles[align !== 'start' ? `${align}` : '']].join(' ')}>
+		<div
+			className={[
+				styles.flexInfoWrap,
+				styles[align !== 'start' ? `${align}` : '']
+			].join(' ')}
+			style={{ marginBottom: `${marginBottom}px`}}
+		>
 			<div className={styles.leftArea}>
 				{leftArea}
 			</div>

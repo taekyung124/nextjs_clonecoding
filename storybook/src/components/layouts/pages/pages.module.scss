@@ -1,0 +1,161 @@
+@use 'sass:map';
+@use '../../../styles/abstracts/variables';
+@use '../../../styles/abstracts/mixins';
+
+// display
+
+// join
+
+// prod detail
+.prodInfoWrap {
+	position: relative;
+	padding-top: 4px;
+	font-size: 0;
+
+	> button {
+		position: absolute;
+		top: -50px;
+		right: 2px;
+		z-index: 2;
+	}
+
+	.badgeGroup {
+		@include mixins.justify_width;
+		flex-wrap: wrap;
+		gap: 3px;
+		margin-bottom: 15px;
+	}
+
+	.infoArea {
+		.prodBrand {
+			@include mixins.justify_width(center, start);
+			gap: 6px;
+			.brandName {
+				display: inline-block;
+				@include mixins.font_size_3xl;
+				font-family: variables.$fontEngDefault;
+				font-weight: variables.$fontWeightEngBold;
+				color: variables.$textColorB;
+				vertical-align: top;
+			}
+		}
+		.prodName {
+			margin-top: 12px;
+			@include mixins.font_size_2xl('lt');
+			color: variables.$textColorB;
+		}
+
+		.prodPrice {
+			margin-top: 20px;
+			font-size: 0;
+
+			.originPrice {
+				display: block;
+				margin-bottom: 6px;
+				@include mixins.font_size_sm('lt');
+				color: variables.$textColorG;
+				text-decoration: line-through;
+
+				.val, .unit {
+					font-size: inherit;
+					line-height: inherit;
+					letter-spacing: inherit;
+					font-weight: inherit;
+					color: inherit;
+				}
+			}
+			.percent {
+				display: inline-block;
+				margin-right: 6px;
+				font-size: 24px;
+				line-height: 28px;
+				letter-spacing: variables.$letterSpacing;
+				font-weight: variables.$fontWeightSemibold;
+				color: variables.$textColorGold;
+				vertical-align: top;
+			}
+		}
+	}
+}
+
+.prodCompositionWrap { // 주요부속품
+	@include mixins.justify_width(center, center, column);
+	.iconBox {
+		width: 60px;
+		height: 60px;
+		margin: 0 auto;
+		padding: 15px;
+		border-radius: 50%;
+		border: 1px solid variables.$colorGray06;
+		background-color: variables.$colorWhite;
+	}
+	.infoBox {
+		width: 100%;
+		margin-top: 14px;
+		padding: 0 3px;
+		@include mixins.font_size_md;
+		color: variables.$colorGray03;
+		text-align: center;
+	}
+
+	&.isActive {
+		.iconBox {
+			border: 0;
+			background-color: variables.$colorGreen;
+		}
+
+		.infoBox {
+			font-weight: variables.$fontWeightMedium;
+			color: variables.$colorGreen;
+		}
+	}
+}
+
+.deliveryIconBox { // 배송정보
+	width: 50px !important;
+	height: 50px;
+	padding: 10px;
+	border-radius: 4px;
+	background-color: variables.$colorGray06;
+	overflow: hidden;
+}
+
+.prodGradeBox { // 상품등급
+	position: relative;
+	@include mixins.justify_width(center);
+	background: variables.$colorGray06;
+	color: variables.$textColorDG;
+	border-radius: 4px;
+	width: 100%;
+	min-height: 80px;
+	padding: 23px 60px 23px 20px;
+
+	&:after {
+		content: '현재 상품 등급';
+		font-size: 0;
+		position: absolute;
+		top: 50%;
+		right: 20px;
+		width: 24px;
+		height: 24px;
+		@include mixins.prefix(transform, translateY(-50%));
+		@include mixins.ratio_images('/assets/icons/comm_ico_round_check_brown');
+		display: none;
+	}
+
+	.grade {
+		width: 63px;
+		margin-right: 10px;
+	}
+	.desc {
+		flex: 1;
+	}
+
+	&.isActive {
+		background: variables.$colorWhite;
+		border: 1px solid variables.$colorGreen;
+		&:after {
+			display: block;
+		}
+	}
+}

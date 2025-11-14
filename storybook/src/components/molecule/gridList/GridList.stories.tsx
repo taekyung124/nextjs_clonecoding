@@ -100,7 +100,7 @@ export const ProdListCol2:StoryFn = () => (
 			type={'col2'} gap={'prod'}
 			items={[
 				<ProdItem
-					direction="col" imgSrc="prod_5by5" squareSize="Lg" prodLank={1}
+					direction="col" imgSrc="prod_5by5" squareSize="auto" prodLank={1}
 					brand="BRAND NAME BRAND NAME BRAND NAME BRAND NAME BRAND NAME BRAND NAME"
 					btmBadgeText={['badge01', 'badge02', 'badge03']}
 					btnLink btnWish uiChk
@@ -110,7 +110,7 @@ export const ProdListCol2:StoryFn = () => (
 					topBadgeText={['badge01', 'badge02']}
 				/>,
 				<ProdItem
-					direction="col" imgSrc="prod_5by5" squareSize="Lg" prodLank={2}
+					direction="col" imgSrc="prod_5by5" squareSize="auto" prodLank={2}
 					brand="BRAND NAME BRAND NAME BRAND NAME BRAND NAME BRAND NAME BRAND NAME"
 					btmBadgeText={['badge01', 'badge02', 'badge03']}
 					btnLink btnWish uiChk
@@ -120,7 +120,7 @@ export const ProdListCol2:StoryFn = () => (
 					topBadgeText={['badge01', 'badge02']}
 				/>,
 				<ProdItem
-					direction="col" imgSrc="prod_5by5" squareSize="Lg" prodLank={3}
+					direction="col" imgSrc="prod_5by5" squareSize="auto" prodLank={3}
 					brand="BRAND NAME BRAND NAME BRAND NAME BRAND NAME BRAND NAME BRAND NAME"
 					btmBadgeText={['badge01', 'badge02', 'badge03']}
 					btnLink btnWish uiChk
@@ -130,7 +130,7 @@ export const ProdListCol2:StoryFn = () => (
 					topBadgeText={['badge01', 'badge02']}
 				/>,
 				<ProdItem
-					direction="col" imgSrc="prod_5by5" squareSize="Lg" prodLank={4}
+					direction="col" imgSrc="prod_5by5" squareSize="auto" prodLank={4}
 					brand="BRAND NAME BRAND NAME BRAND NAME BRAND NAME BRAND NAME BRAND NAME"
 					btmBadgeText={['badge01', 'badge02', 'badge03']}
 					btnLink btnWish uiChk

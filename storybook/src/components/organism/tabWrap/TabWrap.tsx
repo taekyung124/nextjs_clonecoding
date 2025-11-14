@@ -2,6 +2,7 @@ import * as React from 'react';
 import styles from "@/components/organism/tabWrap/TabWrap.module.scss";
 
 import {SwiperWrap} from "@/components/organism/swiperWrap/SwiperWrap";
+import { StickyWrap } from "@/components/organism/stickyWrap/StickyWrap";
 
 export type TabMenu = {
 	text?: string;
@@ -14,16 +15,19 @@ interface TabWrapProps {
 	type?: 'line' | 'pill' | 'boxSm' | 'boxLg';
 	align?: 'auto' | 'justify' | 'col2' | 'col3 ';
 	isAnchor?: boolean;
+	isSticky?: boolean;
+	stickyTop?: number;
 	filterTab?: boolean;
 	tabs?: TabMenu[];
 	tabContent?: React.ReactNode[];
 }
 
 export const TabWrap: React.FC<TabWrapProps> = ({
-													type = 'line', align = 'auto',
-													isAnchor, filterTab,
-													tabs = [], tabContent,
-												}) => {
+	type = 'line', align = 'auto',
+	isAnchor, filterTab,
+	tabs = [], tabContent,
+	isSticky, stickyTop = 0,
+}) => {
 	const [activeIndex, setActiveIndex] = React.useState(0);
 
 	const handleTabClick = (idx: number, isDisabled?: boolean) => {
@@ -33,8 +37,20 @@ export const TabWrap: React.FC<TabWrapProps> = ({
 
 		if (isAnchor) {
 			const target = document.getElementById(`tab-content-${idx}`);
+			const stickyEl = document.querySelector(`.${styles.tabs}`);
+
 			if (target) {
-				target.scrollIntoView({ behavior: 'smooth' });
+				const targetRect = target.getBoundingClientRect();
+				const currentScroll = window.scrollY;
+				const stickyOffset = stickyTop || 0;
+				const tabHeight = stickyEl?.clientHeight || 0;
+
+				const offset = targetRect.top + currentScroll - (stickyOffset + tabHeight);
+
+				window.scrollTo({
+					top: offset,
+					behavior: 'smooth'
+				});
 			}
 		}
 	};
@@ -62,6 +78,30 @@ export const TabWrap: React.FC<TabWrapProps> = ({
 			</button>
 		);
 	};
+
+	const renderTabs = () => {
+		return (
+			<>
+				{align === 'auto' ? (
+					<SwiperWrap
+						type={'auto'}
+						addClass={styles.tabs}
+						slideClass={styles.tabItem}
+						items={tabs.map((tab, idx) => renderTabMenu(tab, idx))}
+					/>
+				) : (
+					<ul className={styles.tabs}>
+						{tabs.map((tab, idx) => (
+							<li key={idx} className={styles.tabItem}>
+								{renderTabMenu(tab, idx)}
+							</li>
+						))}
+					</ul>
+				)}
+			</>
+		);
+	};
+
 	// TODO : storybook 내비게이션 사라지는 이슈 있음, 페이지에서 사용 시 테스트 필요
 	/*const handleTabClick = (idx: number, e: React.MouseEvent, href?: string, isDisabled?: boolean) => {
 		if (!isAnchor && isDisabled) e.preventDefault();
@@ -76,19 +116,16 @@ export const TabWrap: React.FC<TabWrapProps> = ({
 	};*/
 	return (
 		<div className={[styles.tabWrap, styles[type], styles[align]].join(' ')}>
-			{align === 'auto' ? (
-				<SwiperWrap
-					type={'auto'} addClass={styles.tabs} slideClass={styles.tabItem}
-					items={tabs.map((tab, idx) => renderTabMenu(tab, idx))}
-				/>
+			{isSticky ? (
+				<StickyWrap
+					top={stickyTop}
+					className={styles.stickyArea}
+					zIndex={20}
+				>
+					{renderTabs()}
+				</StickyWrap>
 			) : (
-				<ul className={styles.tabs}>
-					{tabs.map((tab, idx) => (
-						<li key={idx} className={styles.tabItem}>
-							{renderTabMenu(tab, idx)}
-						</li>
-					))}
-				</ul>
+				renderTabs()
 			)}
 			{!filterTab &&
 				(tabContent?.map((content, idx) => (

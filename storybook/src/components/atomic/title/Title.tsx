@@ -3,7 +3,7 @@ import styles from '@/components/atomic/title/Title.module.scss';
 
 interface TitleProps {
 	type? : 'ctitle' | 'ctitleSub' | 'stitle' ;
-	size? : 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
+	size? : 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
 	lang? : 'kor' | 'eng';
 	text?: string | React.ReactNode;
 	addClass?: string;
